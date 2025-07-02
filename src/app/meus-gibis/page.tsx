@@ -69,7 +69,6 @@ export default function GibisPage() {
     router.push("/gibi/novo");
   };
 
-  // Loading state
   if (isLoading) {
     return (
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
@@ -81,7 +80,6 @@ export default function GibisPage() {
     );
   }
 
-  // Error state
   if (error) {
     return (
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
@@ -102,7 +100,6 @@ export default function GibisPage() {
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-      {/* Header Section */}
       <div className="mb-6 sm:mb-8">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <div>
@@ -118,7 +115,6 @@ export default function GibisPage() {
             </p>
           </div>
 
-          {/* Add Gibi Button */}
           <button
             onClick={handleAddGibi}
             className="flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-md hover:shadow-lg w-full sm:w-auto"
@@ -128,15 +124,12 @@ export default function GibisPage() {
           </button>
         </div>
 
-        {/* Search Input */}
         <div className="w-full">
           <InputPesquisa setPesquisa={setPesquisa} />
         </div>
       </div>
 
-      {/* Content Section */}
       {gibis.length === 0 ? (
-        // Empty state
         <div className="flex flex-col items-center justify-center py-12 sm:py-16 text-center">
           <div className="bg-gray-50 dark:bg-gray-800 rounded-full p-6 mb-6">
             <FaBook className="text-4xl sm:text-5xl text-gray-400" />
@@ -156,7 +149,6 @@ export default function GibisPage() {
           </button>
         </div>
       ) : gibisFiltrados.length === 0 ? (
-        // No search results
         <div className="flex flex-col items-center justify-center py-12 sm:py-16 text-center">
           <div className="bg-gray-50 dark:bg-gray-800 rounded-full p-6 mb-6">
             <FaBook className="text-4xl sm:text-5xl text-gray-400" />
@@ -175,7 +167,6 @@ export default function GibisPage() {
           </button>
         </div>
       ) : (
-        // Gibis grid
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-3 sm:gap-4 lg:gap-6">
           {gibisFiltrados.map((gibi) => (
             <CardGibi
@@ -187,7 +178,6 @@ export default function GibisPage() {
         </div>
       )}
 
-      {/* Results counter for mobile */}
       {gibisFiltrados.length > 0 && pesquisa && (
         <div className="mt-6 sm:mt-8 text-center">
           <p className="text-sm text-gray-600 dark:text-gray-400">

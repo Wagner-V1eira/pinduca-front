@@ -1,11 +1,10 @@
-// app/gibi/[id]/page.tsx
 "use client";
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import ListaReviews from '@/components/ListaReviews';
-import FormTextoReview from '@/components/FormTextoReview'; // Certifique-se que este é o nome correto do seu arquivo/componente
+import FormTextoReview from '@/components/FormTextoReview'; 
 import EstrelasAvaliacao from '@/components/EstrelasAvaliacao';
 import { GibiFromApi, ReviewFromApi } from '@/types';
 import { useAuth } from '@/context/AuthContext';
@@ -40,8 +39,8 @@ const GibiDetailsPage: React.FC = () => {
     const carregarGibi = async () => {
       setIsLoadingGibi(true);
       setErroGibi(null);
-      const baseUrl = process.env.NEXT_PUBLIC_URL_API; // Ex: "http://localhost:3001/api"
-      const apiUrl = `${baseUrl}/gibi/${idGibiParam}`; // CORRETO: baseUrl já tem /api
+      const baseUrl = process.env.NEXT_PUBLIC_URL_API; 
+      const apiUrl = `${baseUrl}/gibi/${idGibiParam}`; 
       console.log('Buscando detalhes do gibi em:', apiUrl);
       try {
         const response = await fetch(apiUrl);
@@ -73,7 +72,7 @@ const GibiDetailsPage: React.FC = () => {
     }
     setIsLoadingUserReview(true);
     const baseUrl = process.env.NEXT_PUBLIC_URL_API;
-    const apiUrl = `${baseUrl}/review/gibi/${gibi.id}/meu`; // CORRETO: baseUrl já tem /api
+    const apiUrl = `${baseUrl}/review/gibi/${gibi.id}/meu`; 
     console.log('Buscando review do usuário em:', apiUrl);
     try {
       const response = await fetch(apiUrl, { headers: { 'Authorization': `Bearer ${token}` } });
@@ -103,7 +102,7 @@ const GibiDetailsPage: React.FC = () => {
     } finally {
       setIsLoadingUserReview(false);
     }
-  }, [isLoggedIn, token, gibi?.id]); // gibi.id é a dependência correta aqui
+  }, [isLoggedIn, token, gibi?.id]); 
 
   useEffect(() => {
     if (gibi?.id && isLoggedIn) {
@@ -111,7 +110,7 @@ const GibiDetailsPage: React.FC = () => {
     } else if (!isLoggedIn) {
       setExistingReview(null); setSelectedStars(null); setReviewText('');
     }
-  }, [gibi?.id, isLoggedIn, fetchUserReview]); // fetchUserReview aqui como dependência está correto
+  }, [gibi?.id, isLoggedIn, fetchUserReview]); 
 
   const handleEditReviewRequest = (reviewToEdit: ReviewFromApi) => {
     console.log("Solicitação para editar review:", reviewToEdit);
@@ -128,11 +127,9 @@ const GibiDetailsPage: React.FC = () => {
     console.log('Ação de review (ex: delete) na ListaReviews concluída. Atualizando dados...');
     setRefreshKey(prevKey => prevKey + 1);
     if (gibi?.id && isLoggedIn) {
-      // Após uma ação na lista (como deletar), é crucial verificar se o review do usuário
-      // ainda existe e limpar o formulário se necessário.
-      fetchUserReview(true); // Passar true para limpar se o review do usuário foi deletado
+      fetchUserReview(true); 
     }
-  }, [gibi?.id, isLoggedIn, fetchUserReview]); // Dependências corretas
+  }, [gibi?.id, isLoggedIn, fetchUserReview]); 
 
   const handleReviewSubmit = async () => {
     if (!isLoggedIn || !token || !user) { toast.error("Você precisa estar logado para enviar um review."); return; }
@@ -142,12 +139,12 @@ const GibiDetailsPage: React.FC = () => {
 
     setIsSubmittingReview(true);
     const baseUrl = process.env.NEXT_PUBLIC_URL_API;
-    let apiUrl = `${baseUrl}/review`; // CORRETO
+    let apiUrl = `${baseUrl}/review`; 
     let method = 'POST';
     const reviewPayload = { gibiId: gibi.id, avaliacao: selectedStars, conteudo: reviewText };
 
     if (existingReview && existingReview.id) {
-      apiUrl = `${baseUrl}/review/${existingReview.id}`; // CORRETO
+      apiUrl = `${baseUrl}/review/${existingReview.id}`; 
       method = 'PUT';
     }
     console.log(`Enviando review para: ${apiUrl} com método ${method}`, reviewPayload);
@@ -157,23 +154,23 @@ const GibiDetailsPage: React.FC = () => {
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify(reviewPayload),
       });
-      const responseData: ReviewFromApi | { erro?: string, message?: string } = await response.json().catch(() => null); // responseData pode ser Review ou erro
+      const responseData: ReviewFromApi | { erro?: string, message?: string } = await response.json().catch(() => null); 
 
       if (!response.ok) {
-        const apiError = responseData as { erro?: string, message?: string }; // Type assertion
+        const apiError = responseData as { erro?: string, message?: string }; 
         throw new Error(apiError?.erro || apiError?.message || `Erro ao ${method === 'POST' ? 'enviar' : 'atualizar'} review: ${response.status}`);
       }
 
-      const submittedReview = responseData as ReviewFromApi; // Agora sabemos que é ReviewFromApi
+      const submittedReview = responseData as ReviewFromApi; 
       toast.success(`Review ${method === 'POST' ? 'enviado' : 'atualizado'} com sucesso!`);
       
-      setRefreshKey(prevKey => prevKey + 1); // Atualiza a ListaReviews PRIMEIRO
+      setRefreshKey(prevKey => prevKey + 1); 
 
       if (method === 'POST') {
-        setExistingReview(submittedReview); // O review recém-criado é agora o "existente"
-        setSelectedStars(null); // Limpa o formulário
-        setReviewText('');      // Limpa o formulário
-      } else { // PUT (atualização)
+        setExistingReview(submittedReview); 
+        setSelectedStars(null); 
+        setReviewText('');      
+      } else { 
         setExistingReview(submittedReview);
         setSelectedStars(submittedReview.avaliacao);
         setReviewText(submittedReview.conteudo);
@@ -193,7 +190,7 @@ const GibiDetailsPage: React.FC = () => {
     if (!window.confirm(`Tem certeza que deseja excluir o gibi "${gibi.titulo}"? Esta ação não pode ser desfeita.`)) return;
     setIsDeletingGibi(true);
     const baseUrl = process.env.NEXT_PUBLIC_URL_API;
-    const apiUrl = `${baseUrl}/gibi/${gibi.id}`; // CORRETO
+    const apiUrl = `${baseUrl}/gibi/${gibi.id}`; 
     try {
       const response = await fetch(apiUrl, { method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` }});
       if (response.status === 204) {
@@ -232,9 +229,9 @@ const GibiDetailsPage: React.FC = () => {
             <Image
               src={gibi.capaUrl || placeholderImg}
               alt={`Capa de ${gibi.titulo}`}
-              fill // fill é preferível a layout="fill" nas versões mais recentes do Next/Image
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw" // Exemplo de sizes prop
-              style={{ objectFit: 'cover' }} // objectFit via style prop
+              fill 
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw" 
+              style={{ objectFit: 'cover' }} 
               priority
               onError={(e) => { (e.target as HTMLImageElement).src = placeholderImg; }}
             />

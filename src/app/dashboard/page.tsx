@@ -145,7 +145,6 @@ const DashboardPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Seção de Permissões - Apenas para Admin Auxiliar */}
         {user?.role === 'ADMIN_AUX' && (
           <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 sm:p-6 mb-6 sm:mb-8">
             <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-300 mb-3">
@@ -180,7 +179,6 @@ const DashboardPage: React.FC = () => {
           </div>
         )}
 
-        {/* Cards de Estatísticas */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
           <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
             <div className="flex items-center">
@@ -295,9 +293,7 @@ const DashboardPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Gráficos */}
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8">
-          {/* Gibis por Ano */}
           <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
             <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
               Gibis Cadastrados por Ano
@@ -329,7 +325,6 @@ const DashboardPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Distribuição de Avaliações */}
           <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
             <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
               Distribuição de Avaliações
@@ -370,7 +365,6 @@ const DashboardPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Reviews por Mês */}
           <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
             <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
               Reviews por Mês
@@ -408,7 +402,6 @@ const DashboardPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Top Gibis */}
           <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
             <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
               Gibis Mais Bem Avaliados
@@ -439,7 +432,6 @@ const DashboardPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Usuários Mais Ativos */}
         <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
           <div className="mb-4">
             <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100">
@@ -453,7 +445,7 @@ const DashboardPage: React.FC = () => {
             <ResponsiveContainer width="100%" height={350} minWidth={300}>
               <BarChart
                 data={stats.usuariosAtivos.slice(0, 10)}
-                layout="horizontal"
+                layout="vertical"
                 margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />

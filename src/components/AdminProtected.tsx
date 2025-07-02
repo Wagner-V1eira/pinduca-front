@@ -8,7 +8,7 @@ import { toast } from 'sonner';
 
 interface AdminProtectedProps {
   children: React.ReactNode;
-  requireFullAdmin?: boolean; // Se true, exige ADMIN completo. Se false, aceita ADMIN_AUX também
+  requireFullAdmin?: boolean; 
 }
 
 const AdminProtected: React.FC<AdminProtectedProps> = ({

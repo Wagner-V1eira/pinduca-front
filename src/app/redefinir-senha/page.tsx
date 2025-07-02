@@ -1,4 +1,3 @@
-// app/redefinir-senha/page.tsx
 'use client';
 import React, { useState, useEffect, FormEvent, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';

@@ -1,4 +1,3 @@
-// components/ListaReviews.tsx
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -37,7 +36,7 @@ const ListaReviews: React.FC<ListaReviewsProps> = ({
   const { isLoggedIn, user, token } = useAuth();
   const [reviews, setReviews] = useState<ReviewFromApi[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [erro, setErro] = useState(''); // Para exibir erros na UI, se necessário
+  const [erro, setErro] = useState(''); 
   const [deletingId, setDeletingId] = useState<number | null>(null);
 
   useEffect(() => {
@@ -49,16 +48,15 @@ const ListaReviews: React.FC<ListaReviewsProps> = ({
         return;
       }
       setIsLoading(true);
-      setErro(''); // Limpa erros anteriores
+      setErro(''); 
       try {
-        const baseUrl = process.env.NEXT_PUBLIC_URL_API; // Ex: "http://localhost:3001/api"
+        const baseUrl = process.env.NEXT_PUBLIC_URL_API; 
         const apiUrl = `${baseUrl}/review/gibi/${gibiId}`;
         console.log("ListaReviews: Buscando de:", apiUrl);
         const response = await fetch(apiUrl);
 
         if (!response.ok) {
-          const errorData = await response.json().catch(() => ({})); // Tenta pegar o corpo do erro
-          // Usa a mensagem de erro do backend (errorData.erro) ou uma mensagem padrão
+          const errorData = await response.json().catch(() => ({})); 
           throw new Error(errorData.erro || `Erro ao carregar reviews: ${response.status}`);
         }
         const data: ReviewFromApi[] = await response.json();
@@ -69,8 +67,7 @@ const ListaReviews: React.FC<ListaReviewsProps> = ({
         if (error instanceof Error) {
           errorMessage = error.message;
         }
-        setErro(errorMessage); // Define o estado de erro para ser exibido na UI
-        // toast.error(errorMessage); // Opcional: pode mostrar toast aqui também, mas o estado 'erro' já exibe
+        setErro(errorMessage); 
       } finally {
         setIsLoading(false);
       }
@@ -102,7 +99,7 @@ const ListaReviews: React.FC<ListaReviewsProps> = ({
           onReviewAction();
         }
       } else {
-        const errorData = await response.json().catch(() => ({})); // Tenta pegar o corpo do erro
+        const errorData = await response.json().catch(() => ({})); 
         throw new Error(errorData?.erro || `Erro ao excluir review: ${response.status}`);
       }
     } catch (error: unknown) {
@@ -111,7 +108,7 @@ const ListaReviews: React.FC<ListaReviewsProps> = ({
       if (error instanceof Error) {
         errorMessage = error.message;
       }
-      toast.error(errorMessage); // Mostra o erro específico no toast
+      toast.error(errorMessage); 
     }
     finally { setDeletingId(null); }
   };
@@ -124,7 +121,7 @@ const ListaReviews: React.FC<ListaReviewsProps> = ({
 
 
   if (isLoading) { return <p className="text-center text-gray-500 dark:text-gray-400 py-4">Carregando reviews...</p>; }
-  if (erro) { return <p className="text-red-500 text-sm text-center py-4">Erro ao carregar reviews: {erro}</p>; } // Exibe o erro
+  if (erro) { return <p className="text-red-500 text-sm text-center py-4">Erro ao carregar reviews: {erro}</p>; } 
   if (reviews.length === 0) { return <p className="text-center text-gray-600 dark:text-gray-300 py-4">Ainda não há reviews para este gibi.</p>; }
 
   return (
@@ -138,7 +135,6 @@ const ListaReviews: React.FC<ListaReviewsProps> = ({
 
         const isDeletingThis = deletingId === review.id;
 
-        // Mantendo as classes de estilização que você forneceu no JSX
         return (
           <div key={review.id} className={`p-4 rounded-lg shadow border transition-opacity duration-300 ${isDeletingThis ? 'opacity-50 pointer-events-none' : ''} bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700`}>
             <div className="flex items-center justify-between mb-1 flex-wrap gap-x-2">

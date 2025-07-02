@@ -1,4 +1,3 @@
-// components/EstrelasAvaliacao.tsx
 import React, { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext'; 

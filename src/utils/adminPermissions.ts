@@ -7,9 +7,6 @@ export type AdminPermission =
   | "manage_gibis"
   | "system_settings";
 
-/**
- * Verifica se o usuário tem uma permissão específica
- */
 export const hasPermission = (
   user: UsuarioRelacionado | null,
   permission: AdminPermission
@@ -18,12 +15,10 @@ export const hasPermission = (
 
   const { role } = user;
 
-  // ADMIN tem todas as permissões
   if (role === "ADMIN") {
     return true;
   }
 
-  // ADMIN_AUX tem permissões limitadas
   if (role === "ADMIN_AUX") {
     const allowedPermissions: AdminPermission[] = [
       "dashboard_access",
@@ -32,37 +27,26 @@ export const hasPermission = (
     return allowedPermissions.includes(permission);
   }
 
-  // USER não tem permissões administrativas
   return false;
 };
 
-/**
- * Verifica se o usuário é qualquer tipo de administrador
- */
 export const isAnyAdmin = (user: UsuarioRelacionado | null): boolean => {
   if (!user) return false;
   return user.role === "ADMIN" || user.role === "ADMIN_AUX";
 };
 
-/**
- * Verifica se o usuário é administrador principal
- */
 export const isFullAdmin = (user: UsuarioRelacionado | null): boolean => {
   if (!user) return false;
   return user.role === "ADMIN";
 };
 
-/**
- * Verifica se o usuário é administrador auxiliar
- */
+
 export const isAuxAdmin = (user: UsuarioRelacionado | null): boolean => {
   if (!user) return false;
   return user.role === "ADMIN_AUX";
 };
 
-/**
- * Retorna uma lista de permissões que o usuário possui
- */
+
 export const getUserPermissions = (
   user: UsuarioRelacionado | null
 ): AdminPermission[] => {
@@ -86,9 +70,7 @@ export const getUserPermissions = (
   return permissions;
 };
 
-/**
- * Retorna o nome amigável do tipo de usuário
- */
+
 export const getUserRoleLabel = (user: UsuarioRelacionado | null): string => {
   if (!user) return "Usuário";
 
