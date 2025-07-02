@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import AdminProtected from "@/components/AdminProtected";
 import { useAuth } from "@/context/AuthContext";
+import { getUserRoleLabel } from "@/utils/adminPermissions";
 import {
   BarChart,
   Bar,
@@ -129,10 +130,55 @@ const DashboardPage: React.FC = () => {
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-gray-100">
             Dashboard Administrativo
           </h1>
-          <p className="mt-2 text-sm sm:text-base text-gray-600 dark:text-gray-400">
-            Visão geral das estatísticas da plataforma
-          </p>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mt-2">
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+              Visão geral das estatísticas da plataforma
+            </p>
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-gray-500 dark:text-gray-400">
+                Logado como:
+              </span>
+              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400">
+                {getUserRoleLabel(user)}
+              </span>
+            </div>
+          </div>
         </div>
+
+        {/* Seção de Permissões - Apenas para Admin Auxiliar */}
+        {user?.role === 'ADMIN_AUX' && (
+          <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 sm:p-6 mb-6 sm:mb-8">
+            <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-300 mb-3">
+              Suas Permissões como Administrador Auxiliar
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span className="text-sm text-blue-800 dark:text-blue-300">
+                  Acesso ao Dashboard
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span className="text-sm text-blue-800 dark:text-blue-300">
+                  Excluir Reviews de Usuários
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                <span className="text-sm text-blue-800 dark:text-blue-300">
+                  Gerenciar Usuários (Limitado)
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                <span className="text-sm text-blue-800 dark:text-blue-300">
+                  Configurações do Sistema (Limitado)
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Cards de Estatísticas */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">

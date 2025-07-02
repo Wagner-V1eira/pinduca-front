@@ -85,7 +85,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenLoginModal }) => {
             >
               <FaStar /> <span>Meus Reviews</span>
             </button>
-            {isLoggedIn && user?.role === "ADMIN" && (
+            {isLoggedIn && (user?.role === "ADMIN" || user?.role === "ADMIN_AUX") && (
               <Link
                 href="/dashboard"
                 className="text-white hover:text-orange-200 flex items-center space-x-2 transition-colors"
@@ -173,7 +173,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenLoginModal }) => {
               >
                 <FaStar /> <span>Meus Reviews</span>
               </button>
-              {isLoggedIn && user?.role === "ADMIN" && (
+              {isLoggedIn && (user?.role === "ADMIN" || user?.role === "ADMIN_AUX") && (
                 <Link
                   href="/dashboard"
                   className="text-white hover:text-orange-200 flex items-center space-x-3 py-2 transition-colors"

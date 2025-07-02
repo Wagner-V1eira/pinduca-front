@@ -1,8 +1,8 @@
 export interface UsuarioRelacionado {
   id: number;
   nome: string;
-  email: string; 
-  role: 'USER' | 'ADMIN'; 
+  email: string;
+  role: "USER" | "ADMIN" | "ADMIN_AUX";
 }
 
 export interface GibiFromApi {
@@ -21,8 +21,8 @@ export interface GibiCardData {
   titulo: string;
   ano: number;
   capaUrl: string | null;
-  sinopse: string | null; 
-  autor: string | null;   
+  sinopse: string | null;
+  autor: string | null;
 }
 
 export interface UserSummaryForReview {
@@ -34,9 +34,9 @@ export interface ReviewFromApi {
   id: number;
   gibiId: number;
   usuarioId: number;
-  avaliacao: number;  
-  conteudo: string;   
-  createdAt: string;  
-  updatedAt: string;  
-  usuario?: UserSummaryForReview; 
+  avaliacao: number;
+  conteudo: string;
+  createdAt: string;
+  updatedAt: string;
+  usuario?: UserSummaryForReview;
 }

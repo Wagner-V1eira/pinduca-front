@@ -6,6 +6,7 @@ import { FaStar, FaEdit, FaTrash } from 'react-icons/fa';
 import { useAuth } from '@/context/AuthContext';
 import { toast } from 'sonner';
 import { ReviewFromApi } from '@/types';
+import { hasPermission } from '@/utils/adminPermissions';
 
 const DisplayEstrelas: React.FC<{ nota: number }> = ({ nota }) => {
   const notaArredondada = Math.round(nota);
@@ -80,8 +81,8 @@ const ListaReviews: React.FC<ListaReviewsProps> = ({
 
   const handleDelete = async (reviewId: number) => {
     if (!isLoggedIn || !token) {
-        toast.error("Você precisa estar logado para excluir um review.");
-        return;
+      toast.error("Você precisa estar logado para excluir um review.");
+      return;
     }
     if (!window.confirm('Tem certeza que deseja excluir este review? Esta ação não pode ser desfeita.')) return;
 
@@ -131,8 +132,8 @@ const ListaReviews: React.FC<ListaReviewsProps> = ({
       {reviews.map(review => {
         const autorNome = review.usuario?.nome || 'Usuário Anônimo';
         const isAuthor = isLoggedIn && user?.id === review.usuarioId;
-        const isAdmin = isLoggedIn && user?.role === 'ADMIN';
-        const canDelete = isAuthor || isAdmin;
+        const canDeleteAsAdmin = hasPermission(user, 'delete_reviews');
+        const canDelete = isAuthor || canDeleteAsAdmin;
         const canEdit = isAuthor;
 
         const isDeletingThis = deletingId === review.id;
@@ -169,13 +170,20 @@ const ListaReviews: React.FC<ListaReviewsProps> = ({
                   <button
                     onClick={() => handleDelete(review.id)}
                     disabled={isDeletingThis}
-                    className="flex items-center text-xs font-medium text-red-500 hover:text-red-700 dark:text-orange-400 dark:hover:text-orange-600 disabled:opacity-50 disabled:cursor-not-allowed hover:underline"
-                    title="Excluir Review"
+                    className="flex items-center text-xs font-medium text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-600 disabled:opacity-50 disabled:cursor-not-allowed hover:underline"
+                    title={isAuthor ? "Excluir Review" : "Excluir Review (Admin)"}
                   >
                     {isDeletingThis ? (
                       <svg className="animate-spin h-4 w-4 mr-1 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
                     ) : (
-                      <FaTrash className="mr-1 h-3 w-3" />
+                      <>
+                        <FaTrash className="mr-1 h-3 w-3" />
+                        {!isAuthor && canDeleteAsAdmin && (
+                          <span className="ml-1 text-xs bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400 px-1 rounded">
+                            Admin
+                          </span>
+                        )}
+                      </>
                     )}
                     {isDeletingThis ? 'Excluindo...' : 'Excluir'}
                   </button>
