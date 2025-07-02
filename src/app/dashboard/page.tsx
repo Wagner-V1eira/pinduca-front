@@ -81,7 +81,7 @@ const DashboardPage: React.FC = () => {
     };
 
     fetchDashboardData();
-  }, [token]);
+  }, [token, user]);
 
   if (isLoading) {
     return (
@@ -124,18 +124,23 @@ const DashboardPage: React.FC = () => {
 
   return (
     <AdminProtected>
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8">
-          Dashboard Administrativo
-        </h1>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-gray-100">
+            Dashboard Administrativo
+          </h1>
+          <p className="mt-2 text-sm sm:text-base text-gray-600 dark:text-gray-400">
+            Visão geral das estatísticas da plataforma
+          </p>
+        </div>
 
         {/* Cards de Estatísticas */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
+          <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
             <div className="flex items-center">
-              <div className="p-3 rounded-full bg-orange-100 dark:bg-orange-900/30">
+              <div className="p-2 sm:p-3 rounded-full bg-orange-100 dark:bg-orange-900/30">
                 <svg
-                  className="w-6 h-6 text-orange-600"
+                  className="w-5 h-5 sm:w-6 sm:h-6 text-orange-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -148,22 +153,22 @@ const DashboardPage: React.FC = () => {
                   />
                 </svg>
               </div>
-              <div className="ml-4">
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="ml-3 sm:ml-4 min-w-0 flex-1">
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 truncate">
                   Total de Gibis
                 </p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">
                   {stats.totalGibis}
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+          <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
             <div className="flex items-center">
-              <div className="p-3 rounded-full bg-blue-100 dark:bg-blue-900/30">
+              <div className="p-2 sm:p-3 rounded-full bg-blue-100 dark:bg-blue-900/30">
                 <svg
-                  className="w-6 h-6 text-blue-600"
+                  className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -176,22 +181,22 @@ const DashboardPage: React.FC = () => {
                   />
                 </svg>
               </div>
-              <div className="ml-4">
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="ml-3 sm:ml-4 min-w-0 flex-1">
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 truncate">
                   Total de Usuários
                 </p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">
                   {stats.totalUsuarios}
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+          <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
             <div className="flex items-center">
-              <div className="p-3 rounded-full bg-green-100 dark:bg-green-900/30">
+              <div className="p-2 sm:p-3 rounded-full bg-green-100 dark:bg-green-900/30">
                 <svg
-                  className="w-6 h-6 text-green-600"
+                  className="w-5 h-5 sm:w-6 sm:h-6 text-green-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -204,22 +209,22 @@ const DashboardPage: React.FC = () => {
                   />
                 </svg>
               </div>
-              <div className="ml-4">
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="ml-3 sm:ml-4 min-w-0 flex-1">
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 truncate">
                   Total de Reviews
                 </p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">
                   {stats.totalReviews}
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+          <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
             <div className="flex items-center">
-              <div className="p-3 rounded-full bg-yellow-100 dark:bg-yellow-900/30">
+              <div className="p-2 sm:p-3 rounded-full bg-yellow-100 dark:bg-yellow-900/30">
                 <svg
-                  className="w-6 h-6 text-yellow-600"
+                  className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -232,11 +237,11 @@ const DashboardPage: React.FC = () => {
                   />
                 </svg>
               </div>
-              <div className="ml-4">
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="ml-3 sm:ml-4 min-w-0 flex-1">
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 truncate">
                   Média de Avaliação
                 </p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">
                   {stats.mediaAvaliacao.toFixed(1)}
                 </p>
               </div>
@@ -245,98 +250,140 @@ const DashboardPage: React.FC = () => {
         </div>
 
         {/* Gráficos */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8">
           {/* Gibis por Ano */}
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+          <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
               Gibis Cadastrados por Ano
             </h3>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={stats.gibisPorAno}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="ano" />
-                <YAxis />
-                <Tooltip />
-                <Bar dataKey="quantidade" fill="#f97316" />
-              </BarChart>
-            </ResponsiveContainer>
+            <div className="w-full overflow-hidden">
+              <ResponsiveContainer width="100%" height={250} minWidth={300}>
+                <BarChart data={stats.gibisPorAno}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis
+                    dataKey="ano"
+                    fontSize={12}
+                    tick={{ fontSize: 12 }}
+                  />
+                  <YAxis
+                    fontSize={12}
+                    tick={{ fontSize: 12 }}
+                  />
+                  <Tooltip
+                    contentStyle={{
+                      fontSize: '14px',
+                      backgroundColor: 'white',
+                      border: '1px solid #ccc',
+                      borderRadius: '4px'
+                    }}
+                  />
+                  <Bar dataKey="quantidade" fill="#f97316" />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
           </div>
 
           {/* Distribuição de Avaliações */}
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+          <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
               Distribuição de Avaliações
             </h3>
-            <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
-                <Pie
-                  data={stats.distribuicaoAvaliacoes}
-                  cx="50%"
-                  cy="50%"
-                  labelLine={false}
-                  label={({ estrelas, percent }) =>
-                    `${estrelas}★ (${((percent || 0) * 100).toFixed(0)}%)`
-                  }
-                  outerRadius={80}
-                  fill="#8884d8"
-                  dataKey="quantidade"
-                >
-                  {stats.distribuicaoAvaliacoes.map((entry, index) => (
-                    <Cell
-                      key={`cell-${index}`}
-                      fill={COLORS[index % COLORS.length]}
-                    />
-                  ))}
-                </Pie>
-                <Tooltip />
-              </PieChart>
-            </ResponsiveContainer>
+            <div className="w-full overflow-hidden">
+              <ResponsiveContainer width="100%" height={250} minWidth={300}>
+                <PieChart>
+                  <Pie
+                    data={stats.distribuicaoAvaliacoes}
+                    cx="50%"
+                    cy="50%"
+                    labelLine={false}
+                    label={({ estrelas, percent }) =>
+                      `${estrelas}★ (${((percent || 0) * 100).toFixed(0)}%)`
+                    }
+                    outerRadius={80}
+                    fill="#8884d8"
+                    dataKey="quantidade"
+                    fontSize={12}
+                  >
+                    {stats.distribuicaoAvaliacoes.map((entry, index) => (
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={COLORS[index % COLORS.length]}
+                      />
+                    ))}
+                  </Pie>
+                  <Tooltip
+                    contentStyle={{
+                      fontSize: '14px',
+                      backgroundColor: 'white',
+                      border: '1px solid #ccc',
+                      borderRadius: '4px'
+                    }}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
           </div>
 
           {/* Reviews por Mês */}
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+          <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
               Reviews por Mês
             </h3>
-            <ResponsiveContainer width="100%" height={300}>
-              <AreaChart data={stats.avaliacoesPorMes}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="mes" />
-                <YAxis />
-                <Tooltip />
-                <Area
-                  type="monotone"
-                  dataKey="quantidade"
-                  stroke="#f97316"
-                  fill="#f97316"
-                  fillOpacity={0.6}
-                />
-              </AreaChart>
-            </ResponsiveContainer>
+            <div className="w-full overflow-hidden">
+              <ResponsiveContainer width="100%" height={250} minWidth={300}>
+                <AreaChart data={stats.avaliacoesPorMes}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis
+                    dataKey="mes"
+                    fontSize={12}
+                    tick={{ fontSize: 12 }}
+                  />
+                  <YAxis
+                    fontSize={12}
+                    tick={{ fontSize: 12 }}
+                  />
+                  <Tooltip
+                    contentStyle={{
+                      fontSize: '14px',
+                      backgroundColor: 'white',
+                      border: '1px solid #ccc',
+                      borderRadius: '4px'
+                    }}
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="quantidade"
+                    stroke="#f97316"
+                    fill="#f97316"
+                    fillOpacity={0.6}
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
           </div>
 
           {/* Top Gibis */}
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+          <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
               Gibis Mais Bem Avaliados
             </h3>
-            <div className="space-y-3">
+            <div className="space-y-3 max-h-64 overflow-y-auto">
               {stats.topGibis.slice(0, 5).map((gibi, index) => (
                 <div
                   key={index}
-                  className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded"
+                  className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
                 >
-                  <div>
-                    <p className="font-medium text-gray-900 dark:text-gray-100 truncate">
+                  <div className="min-w-0 flex-1 mr-4">
+                    <p className="font-medium text-gray-900 dark:text-gray-100 truncate text-sm sm:text-base">
                       {gibi.titulo}
                     </p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                    <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
                       {gibi.totalReviews} reviews
                     </p>
                   </div>
-                  <div className="flex items-center">
+                  <div className="flex items-center flex-shrink-0">
                     <span className="text-yellow-500 mr-1">★</span>
-                    <span className="font-bold text-gray-900 dark:text-gray-100">
+                    <span className="font-bold text-gray-900 dark:text-gray-100 text-sm sm:text-base">
                       {gibi.mediaAvaliacao.toFixed(1)}
                     </span>
                   </div>
@@ -347,22 +394,48 @@ const DashboardPage: React.FC = () => {
         </div>
 
         {/* Usuários Mais Ativos */}
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-          <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-            Usuários Mais Ativos
-          </h3>
-          <ResponsiveContainer width="100%" height={400}>
-            <BarChart
-              data={stats.usuariosAtivos.slice(0, 10)}
-              layout="horizontal"
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis type="number" />
-              <YAxis dataKey="nome" type="category" width={100} />
-              <Tooltip />
-              <Bar dataKey="totalReviews" fill="#f97316" />
-            </BarChart>
-          </ResponsiveContainer>
+        <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <div className="mb-4">
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100">
+              Usuários Mais Ativos
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+              Top 10 usuários com mais reviews
+            </p>
+          </div>
+          <div className="w-full overflow-hidden">
+            <ResponsiveContainer width="100%" height={350} minWidth={300}>
+              <BarChart
+                data={stats.usuariosAtivos.slice(0, 10)}
+                layout="horizontal"
+                margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis
+                  type="number"
+                  fontSize={12}
+                  tick={{ fontSize: 12 }}
+                />
+                <YAxis
+                  dataKey="nome"
+                  type="category"
+                  width={80}
+                  fontSize={10}
+                  tick={{ fontSize: 10 }}
+                  interval={0}
+                />
+                <Tooltip
+                  contentStyle={{
+                    fontSize: '14px',
+                    backgroundColor: 'white',
+                    border: '1px solid #ccc',
+                    borderRadius: '4px'
+                  }}
+                />
+                <Bar dataKey="totalReviews" fill="#f97316" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
         </div>
       </div>
     </AdminProtected>

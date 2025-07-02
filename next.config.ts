@@ -25,6 +25,9 @@ const nextConfig: NextConfig = {
       {
         hostname: "cdn.awsli.com.br",
       },
+      {
+        hostname: "panini.com.br",
+      },
     ],
   },
 };
