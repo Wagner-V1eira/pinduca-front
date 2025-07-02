@@ -75,20 +75,20 @@ const Header: React.FC<HeaderProps> = ({ onOpenLoginModal }) => {
           <div className="hidden lg:flex items-center space-x-6">
             <Link
               href="/"
-              className="text-white hover:text-orange-200 flex items-center space-x-2 transition-colors"
+              className="text-white hover:text-orange-400 flex items-center space-x-2 transition-colors"
             >
               <FaHome /> <span>Início</span>
             </Link>
             <button
               onClick={handleMinhasAvaliacoesClick}
-              className="text-white hover:text-orange-200 flex items-center space-x-2 cursor-pointer transition-colors"
+              className="text-white hover:text-orange-400 flex items-center space-x-2 cursor-pointer transition-colors"
             >
               <FaStar /> <span>Meus Reviews</span>
             </button>
             {isLoggedIn && (user?.role === "ADMIN" || user?.role === "ADMIN_AUX") && (
               <Link
                 href="/dashboard"
-                className="text-white hover:text-orange-200 flex items-center space-x-2 transition-colors"
+                className="text-white hover:text-orange-400 flex items-center space-x-2 transition-colors"
               >
                 <FaChartBar /> <span>Dashboard</span>
               </Link>
@@ -96,7 +96,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenLoginModal }) => {
             {isLoggedIn && (
               <Link
                 href="/meus-gibis"
-                className="text-white hover:text-orange-200 flex items-center space-x-2 transition-colors"
+                className="text-white hover:text-orange-400 flex items-center space-x-2 transition-colors"
               >
                 <FaBook /> <span>Meus Gibis</span>
               </Link>
@@ -109,7 +109,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenLoginModal }) => {
               <>
                 <Link
                   href="/gibi/novo"
-                  className="flex items-center text-white hover:text-orange-200 text-sm font-medium transition-colors"
+                  className="flex items-center text-white hover:text-orange-400 text-sm font-medium transition-colors"
                   title="Adicionar novo gibi"
                 >
                   <FaPlusCircle className="mr-1" />
@@ -131,7 +131,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenLoginModal }) => {
               <>
                 <button
                   onClick={onOpenLoginModal}
-                  className="text-white hover:text-orange-200 flex items-center space-x-2 transition-colors"
+                  className="text-white hover:text-orange-400 flex items-center space-x-2 transition-colors"
                 >
                   <FaSignInAlt /> <span>Entrar</span>
                 </button>
@@ -148,7 +148,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenLoginModal }) => {
           {/* Botão Menu Mobile */}
           <button
             onClick={toggleMobileMenu}
-            className="md:hidden text-white hover:text-orange-200 p-2 transition-colors"
+            className="md:hidden text-white hover:text-orange-400 p-2 transition-colors"
             aria-label="Menu"
           >
             {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
@@ -162,21 +162,21 @@ const Header: React.FC<HeaderProps> = ({ onOpenLoginModal }) => {
               {/* Links de Navegação */}
               <Link
                 href="/"
-                className="text-white hover:text-orange-200 flex items-center space-x-3 py-2 transition-colors"
+                className="text-white hover:text-orange-400 flex items-center space-x-3 py-2 transition-colors"
                 onClick={closeMobileMenu}
               >
                 <FaHome /> <span>Início</span>
               </Link>
               <button
                 onClick={handleMinhasAvaliacoesClick}
-                className="text-white hover:text-orange-200 flex items-center space-x-3 py-2 cursor-pointer transition-colors text-left"
+                className="text-white hover:text-orange-400 flex items-center space-x-3 py-2 cursor-pointer transition-colors text-left"
               >
                 <FaStar /> <span>Meus Reviews</span>
               </button>
               {isLoggedIn && (user?.role === "ADMIN" || user?.role === "ADMIN_AUX") && (
                 <Link
                   href="/dashboard"
-                  className="text-white hover:text-orange-200 flex items-center space-x-3 py-2 transition-colors"
+                  className="text-white hover:text-orange-400 flex items-center space-x-3 py-2 transition-colors"
                   onClick={closeMobileMenu}
                 >
                   <FaChartBar /> <span>Dashboard</span>
@@ -185,7 +185,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenLoginModal }) => {
               {isLoggedIn && (
                 <Link
                   href="/meus-gibis"
-                  className="text-white hover:text-orange-200 flex items-center space-x-3 py-2 transition-colors"
+                  className="text-white hover:text-orange-400 flex items-center space-x-3 py-2 transition-colors"
                   onClick={closeMobileMenu}
                 >
                   <FaBook /> <span>Meus Gibis</span>
@@ -203,7 +203,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenLoginModal }) => {
                   </div>
                   <Link
                     href="/gibi/novo"
-                    className="text-white hover:text-orange-200 flex items-center space-x-3 py-2 transition-colors"
+                    className="text-white hover:text-orange-400 flex items-center space-x-3 py-2 transition-colors"
                     onClick={closeMobileMenu}
                   >
                     <FaPlusCircle /> <span>Adicionar Gibi</span>
@@ -222,7 +222,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenLoginModal }) => {
                       onOpenLoginModal();
                       closeMobileMenu();
                     }}
-                    className="text-white hover:text-orange-200 flex items-center space-x-3 py-2 transition-colors text-left w-full"
+                    className="text-white hover:text-orange-400 flex items-center space-x-3 py-2 transition-colors text-left w-full"
                   >
                     <FaSignInAlt /> <span>Entrar</span>
                   </button>
